@@ -11,6 +11,8 @@ import axios from "axios";
 const app = express();
 app.use(express.json());
 
+let phone_number_id = process.env.PHONE_NUMBER_ID;
+
 const { WEBHOOK_VERIFY_TOKEN, GRAPH_API_TOKEN, PORT } = process.env;
 
 app.post("/webhook", async (req, res) => {
