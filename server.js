@@ -18,7 +18,10 @@ const { WEBHOOK_VERIFY_TOKEN, GRAPH_API_TOKEN, PORT } = process.env;
 app.post("/webhook", async (req, res) => {
   // log incoming messages
   console.log("Incoming webhook message:", JSON.stringify(req.body, null, 2));
-
+  // Obtener cuerpo del Webhook
+  let body = req.body;
+  // Verificar que entre sólo el webhook del número que se está usando
+  if (body.entry[0].id === process.env.WA_BUSINESS_ID) {
   // check if the webhook request contains a message
   // details on WhatsApp text message payload: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
   const message = req.body.entry?.[0]?.changes[0]?.value?.messages?.[0];
@@ -60,6 +63,7 @@ app.post("/webhook", async (req, res) => {
       },
     });
   }
+}
 
   res.sendStatus(200);
 });
