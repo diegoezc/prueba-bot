@@ -5,8 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-const express = require("express")
-const axios = require("axios")
+const express = require("express");
+const axios = require('axios');
 
 const app = express();
 app.use(express.json());
@@ -34,13 +34,16 @@ app.post("/webhook", async (req, res) => {
   if (body.entry[0].id === process.env.WA_BUSINESS_ID) {
   // check if the webhook request contains a message
   // details on WhatsApp text message payload: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
-  const message = req.body.entry?.[0]?.changes[0]?.value?.messages?.[0];
+  const message = req.body.entry[0].changes[0].value.messages[0]
 
   // check if the incoming message contains text
-  if (message?.type === "text") {
+  if (message.type === "text") {
     // extract the business number to send the reply from it
-    const business_phone_number_id =
-      req.body.entry?.[0].changes?.[0].value?.metadata?.phone_number_id;
+const business_phone_number_id =
+  req.body && req.body.entry && req.body.entry[0] &&
+  req.body.entry[0].changes && req.body.entry[0].changes[0] &&
+  req.body.entry[0].changes[0].value && req.body.entry[0].changes[0].value.metadata &&
+  req.body.entry[0].changes[0].value.metadata.phone_number_id;
 
     // send a reply message as per the docs here https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages
     await axios({
