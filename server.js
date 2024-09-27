@@ -15,7 +15,17 @@ let phone_number_id = process.env.PHONE_NUMBER_ID;
 
 const { WEBHOOK_VERIFY_TOKEN, GRAPH_API_TOKEN, PORT } = process.env;
 
+const mongoose = require("mongoose");
+
+//Conexión a MongoDB
+mongoose
+  .connect(`${process.env.MONGO_DB_URI}`)
+  .then(() => console.log("Conexión a MongoDB exitosa"))
+  .catch((err) => console.error("Error al conectar con MongoDB", err));
+
 app.post("/webhook", async (req, res) => {
+
+  
   // log incoming messages
   console.log("Incoming webhook message:", JSON.stringify(req.body, null, 2));
   // Obtener cuerpo del Webhook
