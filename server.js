@@ -11,7 +11,7 @@ const { saveMessage } = require('./controller/sendMessage.js');
 const app = express();
 app.use(express.json());
 
-let phone_number_id = process.env.PHONE_NUMBER_ID;
+//let phone_number_id = process.env.PHONE_NUMBER_ID;
 
 const { WEBHOOK_VERIFY_TOKEN, GRAPH_API_TOKEN, PORT } = process.env;
 
@@ -36,7 +36,8 @@ app.post("/webhook", async (req, res) => {
   if (body.entry[0].id === process.env.WA_BUSINESS_ID) {
   // check if the webhook request contains a message
   // details on WhatsApp text message payload: https://developers.facebook.com/docs/whatsapp/cloud-api/webhooks/payload-examples#text-messages
-  const message = req.body.entry[0].changes[0].value.messages[0]
+  let message = req.body.entry[0].changes[0].value.messages[0].text.body;
+  console.log("Message: ", req.body.entry[0].changes[0].value.messages[0].text.body);
 
   // check if the incoming message contains text
   if (message.type === "text") {
@@ -46,8 +47,7 @@ const business_phone_number_id =
   req.body.entry[0].changes && req.body.entry[0].changes[0] &&
   req.body.entry[0].changes[0].value && req.body.entry[0].changes[0].value.metadata &&
   req.body.entry[0].changes[0].value.metadata.phone_number_id;
-    console.log('kakakakakaka');
-
+  
 
     // send a reply message as per the docs here https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages
     await axios({

@@ -1,4 +1,4 @@
-const messageSchema = require("./schema/messageSchema.js")
+const messageSchema = require("../schema/messageSchema.js")
 
 // Función para guardar el mensaje
 const saveMessage = async (content) => {
