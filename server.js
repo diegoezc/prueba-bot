@@ -16,7 +16,7 @@ const mongoose = require("mongoose");
 
 //Conexión a MongoDB
 mongoose
-  .connect('mongodb+srv://anmdev32:lCbyb4Uv6br7fFJp@andidev.z14hafq.mongodb.net/bot-videos-whatsapp?retryWrites=true&w=majority')
+  .connect(`mongodb+srv://anmdev32:lCbyb4Uv6br7fFJp@andidev.z14hafq.mongodb.net/bot-videos-whatsapp?retryWrites=true&w=majority`)
   .then(() => console.log("Conexión a MongoDB exitosa"))
   .catch((err) => console.error("Error al conectar con MongoDB", err));
 
