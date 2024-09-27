@@ -1,1 +1,0 @@
-const messageSchema = require("./schemas/messageSchema.js")
