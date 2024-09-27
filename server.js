@@ -3,7 +3,10 @@ const request = require("request"),
   express = require("express"),
   body_parser = require("body-parser"),
   dotenv = require("dotenv"),
-  axios = require("axios").default;
+  axios = require("axios");
+
+
+const sendMessage = require("./controller/assistent.js")
 
 const app = express();
 app.use(express.json());
