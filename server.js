@@ -2,6 +2,7 @@
 const request = require("request"),
   express = require("express"),
   body_parser = require("body-parser"),
+  dotenv = require("dotenv"),
   axios = require("axios").default;
 
 const app = express();
@@ -15,7 +16,7 @@ const mongoose = require("mongoose");
 
 //Conexión a MongoDB
 mongoose
-  .connect(`${process.env.MONGO_DB_URI}`)
+  .connect('mongodb+srv://anmdev32:lCbyb4Uv6br7fFJp@andidev.z14hafq.mongodb.net/bot-videos-whatsapp?retryWrites=true&w=majority')
   .then(() => console.log("Conexión a MongoDB exitosa"))
   .catch((err) => console.error("Error al conectar con MongoDB", err));
 
