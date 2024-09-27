@@ -6,8 +6,6 @@ const request = require("request"),
   axios = require("axios");
 
 
-
-
 const app = express();
 app.use(express.json());
 
@@ -22,6 +20,26 @@ mongoose
   .connect(`mongodb+srv://anmdev32:lCbyb4Uv6br7fFJp@andidev.z14hafq.mongodb.net/bot-videos-whatsapp?retryWrites=true&w=majority`)
   .then(() => console.log("Conexión a MongoDB exitosa"))
   .catch((err) => console.error("Error al conectar con MongoDB", err));
+
+
+const Message = require('./schemas/Message');
+
+// Ruta para recibir mensajes
+app.post('/api/messages', async (req, res) => {
+  try {
+    const { content } = req.body;
+
+    // Crear un nuevo mensaje basado en el modelo de Mongoose
+    const message = new Message({ content });
+
+    // Guardar el mensaje en la base de datos
+    await message.save();
+
+    res.status(201).json({ message: 'Mensaje guardado exitosamente' });
+  } catch (error) {
+    res.status(500).json({ error: 'Error al guardar el mensaje' });
+  }
+});
 
 app.post("/webhook", async (req, res) => {
 
