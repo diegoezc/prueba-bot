@@ -9,7 +9,6 @@ const saveMessage = require('./controller/sendMessage.js');
 
 
 const app = express();
-app.use(express.json());
 
 //let phone_number_id = process.env.PHONE_NUMBER_ID;
 
