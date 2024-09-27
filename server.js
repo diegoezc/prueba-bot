@@ -22,7 +22,7 @@ mongoose
   .catch((err) => console.error("Error al conectar con MongoDB", err));
 
 
-const Message = require('./schemas/Message');
+const Message = require('./schemas/messageSchema.js');
 
 // Ruta para recibir mensajes
 app.post('/api/messages', async (req, res) => {
@@ -62,6 +62,8 @@ const business_phone_number_id =
   req.body.entry[0].changes && req.body.entry[0].changes[0] &&
   req.body.entry[0].changes[0].value && req.body.entry[0].changes[0].value.metadata &&
   req.body.entry[0].changes[0].value.metadata.phone_number_id;
+    
+
 
     // send a reply message as per the docs here https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages
     await axios({
