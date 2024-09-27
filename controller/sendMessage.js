@@ -8,7 +8,7 @@ const saveMessage = async (content) => {
 
     // Guardar el mensaje en la base de datos
     await message.save();
-
+      console.log("el contenido es: ", content)
     // Retornar un objeto indicando éxito
     return { success: true, message: 'Mensaje guardado exitosamente' };
   } catch (error) {
@@ -16,10 +16,8 @@ const saveMessage = async (content) => {
     console.error('Error al guardar el mensaje:', error);
     return { success: false, error: 'Error al guardar el mensaje' };
   }
+  
+
 };
-
-const Message = require('./schemas/messageSchema');
-
-
 
 module.exports = { saveMessage };
