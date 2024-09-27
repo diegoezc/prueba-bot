@@ -4,7 +4,7 @@ const messageSchema = require("../schema/messageSchema.js")
 const saveMessage = async (content) => {
   try {
     // Crear un nuevo mensaje basado en el esquema de Mongoose
-    const message = new messageSchema({ content });
+    const message = new messageSchema({ content: content });
 
     // Guardar el mensaje en la base de datos
     await message.save();
@@ -17,5 +17,9 @@ const saveMessage = async (content) => {
     return { success: false, error: 'Error al guardar el mensaje' };
   }
 };
+
+const Message = require('./schemas/messageSchema');
+
+
 
 module.exports = { saveMessage };
