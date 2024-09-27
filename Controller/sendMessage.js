@@ -13,6 +13,7 @@ async function getSubscriptionActive(from, body) {
     date: new Date(),
     dateFormat: new Date().toLocaleDateString("en-GB"),
   };
+
 }
 
-module.exports =  getSubscriptionActive ;
+module.exports =  getSubscriptionActive;
