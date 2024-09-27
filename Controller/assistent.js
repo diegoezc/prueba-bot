@@ -1,15 +1,15 @@
-const mongoose = require('mongoose');
+async function mensajeBD (from , body){
+  try {
+    const { content } = req.body;
 
-const messageSchema = new mongoose.Schema({
-  content: {
-    type: String,
-    required: true,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
+    // Crear un nuevo mensaje basado en el modelo de Mongoose
+    const message = new Message({ content });
 
-module.exports = mongoose.model('Message', messageSchema);
+    // Guardar el mensaje en la base de datos
+    await message.save();
 
+    res.status(201).json({ message: 'Mensaje guardado exitosamente' });
+  } catch (error) {
+    res.status(500).json({ error: 'Error al guardar el mensaje' });
+  }
+}
