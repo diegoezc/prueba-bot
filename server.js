@@ -5,7 +5,7 @@ const request = require("request"),
   dotenv = require("dotenv"),
   axios = require("axios");
 
-const { saveMessage } = require('./controller/sendMessage.js');
+const saveMessage = require('./controller/sendMessage.js');
 
 
 const app = express();
@@ -24,6 +24,10 @@ mongoose
   .catch((err) => console.error("Error al conectar con MongoDB", err));
 
 // Ruta para recibir mensajes
+
+app.use(body_parser.json());  // Middleware para manejar JSON en las solicitudes
+
+// Ruta para manejar un webhook que recibe mensajes y los guarda en la base de datos
 
 app.post("/webhook", async (req, res) => {
 
