@@ -21,8 +21,7 @@ mongoose
   .then(() => console.log("Conexión a MongoDB exitosa"))
   .catch((err) => console.error("Error al conectar con MongoDB", err));
 
-
-const getSubscriptionActive = require('./controller/messageSchema.js');
+// Ruta para recibir mensajes
 
 app.post("/webhook", async (req, res) => {
 
