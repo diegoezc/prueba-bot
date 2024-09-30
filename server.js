@@ -13,7 +13,7 @@ const app = express();
 //let phone_number_id = process.env.PHONE_NUMBER_ID;
 
 const { WEBHOOK_VERIFY_TOKEN, GRAPH_API_TOKEN, PORT } = process.env;
-
+const PORT_SERVER=PORT || 3000
 const mongoose = require("mongoose");
 
 //Conexión a MongoDB
@@ -111,7 +111,7 @@ app.get("/", (req, res) => {
 Checkout README.md to start.</pre>`);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port: ${PORT}`);
+app.listen(PORT_SERVER, () => {
+  console.log(`Server is listening on port: ${PORT_SERVER}`);
 });
 
