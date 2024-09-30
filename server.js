@@ -5,7 +5,7 @@ const request = require("request"),
   dotenv = require("dotenv"),
   axios = require("axios");
 
-const saveMessage = require('./controller/sendMessage.js');
+const controllerWhatsap = require('./Controller/sendMessage.js');
 
 
 const app = express();
@@ -28,6 +28,16 @@ app.use(body_parser.json());  // Middleware para manejar JSON en las solicitudes
 
 // Ruta para manejar un webhook que recibe mensajes y los guarda en la base de datos
 
+app.post('/whatsapp/send-message', async(req ,res)=>{
+  const body = req.body
+
+  const text = body.payload.text.body
+  const payload = body.payload
+  const response = await  controllerWhatsap.saveMessage(text,payload)
+  return res.json({
+    response
+  })
+})
 app.post("/webhook", async (req, res) => {
 
   
