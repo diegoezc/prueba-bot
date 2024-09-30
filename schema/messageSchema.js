@@ -13,5 +13,3 @@ const messageSchema = new mongoose.Schema({
 
 module.exports = mongoose.model('Message', messageSchema);
 module.exports = messageSchema
-
-//que mamera esta mierda de editor
